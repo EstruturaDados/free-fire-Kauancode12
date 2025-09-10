@@ -7,3 +7,9 @@ typedef struct {
     char tipo[20];
     int quantidade;
 } Item;
+
+int main() {
+    int mochila[10];
+    int contador_item;
+}
+
