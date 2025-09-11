@@ -43,11 +43,58 @@ void listarItens(Item mochila[], int contador) {
     }
 
     printf("=== Itens na mochila ===\n");
-    for (int i = 0; i < contador; i++)
-    {
+    for (int i = 0; i < contador; i++) {
         printf("%d - Nome: %s | Tipo: %s | Quantidade: %d\n", i + 1, mochila[i].nome, mochila[i].tipo, mochila[i].quantidade);
     }
 }
 
+void removerItem(Item mochila[], int *contador) {
+    if (*contador ==0) {
+        printf("Inventario vazio.\n");
+        return;
+    }
 
+    char nome[30];
+    printf("Digite o nome do item que deseja remover: ");
+    scanf(" %[^\n]", nome);
+
+    int pos = -1;
+    for (int i = 0; i < *contador; i++) {
+        if (strcmp(mochila[i].nome, nome) == 0) {
+            pos = i;
+            break;
+        }
+    }
+    if (pos == -1) {
+        printf("Item nao encontrado.\n");
+        return;
+    }
+    
+    for (int i = pos; i < *contador - 1; i++) {
+        mochila[i] = mochila[i + 1];
+    }
+
+    (*contador)--;
+    printf("Item removido com sucesso.\n");
+}
+
+void buscarItem(Item mochila[], int contador) {
+    if (contador == 0) {
+        printf("Inventario vazio.\n");
+        return;
+    }
+
+    char nome[30];
+    printf("Digite o nome do item que deseja buscar: ");
+    scanf(" %[^\n]", nome);
+
+    for (int i = 0; i < contador; i++) {
+        if (strcmp(mochila[i].nome, nome) == 0) {
+            printf("Item encontrado: Nome: %s | Tipo: %s | Quantidade: %d\n", mochila[i].nome, mochila[i].tipo, mochila[i].quantidade);
+            return;
+        }
+    }
+
+    printf("Item nao encontrado.\n");
+}
 
