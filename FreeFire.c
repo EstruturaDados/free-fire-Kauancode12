@@ -10,10 +10,48 @@ typedef struct {
     int quantidade;
 } Item;
 
+void inserirItem(Item mochila[], int *contador);
+void listarItens(Item mochila[], int contador);
+void removerItem(Item mochila[], int *contador);
+void buscarItem(Item mochila[], int contador);
+
 int main() {
     Item mochila[TAM];
     int contador_item = 0;
     int opcao;
+
+    do {
+        printf("\n=== MENU ===\n");
+        printf("1 - Inserir item\n");
+        printf("2 - Remover item\n");
+        printf("3 - Listar itens\n");
+        printf("4 - Buscar item\n");
+        printf("0 - Sair\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                inserirItem(mochila, &contador_item);
+                break;
+            case 2:
+                removerItem(mochila, &contador_item);
+                break;
+            case 3:
+                listarItens(mochila, contador_item);
+                break;
+            case 4:
+                buscarItem(mochila, contador_item);
+                break;
+            case 0:
+                printf("Saindo...\n");
+                break;
+            default:
+                printf("Opcao invalida\n");
+        }
+    } while (opcao != 0);
+
+    return 0;
 }
 
 void inserirItem(Item mochila[], int *contador) {
