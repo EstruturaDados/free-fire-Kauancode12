@@ -2,14 +2,16 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define TAM 10
+#define TAM 10// Define a capacidade maxima do inventario.
 
+// Cria a struct e coloca o apelido Item para facilitar seu uso.
 typedef struct {
     char nome[30];
     char tipo[20];
     int quantidade;
 } Item;
 
+// Prototipos das funções.
 void inserirItem(Item mochila[], int *contador);
 void listarItens(Item mochila[], int contador);
 void removerItem(Item mochila[], int *contador);
@@ -21,6 +23,7 @@ int main() {
     int contador_item = 0;
     int opcao;
 
+    // Menu interativo que chama as funções.
     do {
         printf("\n=== MENU ===\n");
         printf("1 - Inserir item\n");
@@ -55,6 +58,8 @@ int main() {
     return 0;
 }
 
+// Função de inserir item no inventário, primeiro verifica se o inventário está cheio por meio do contador, se sim ele não continua,
+// se tiver espaço ele cadastra as informações do item e incrementa o contador.
 void inserirItem(Item mochila[], int *contador) {
     if (*contador >= TAM) {
         printf("Inventario cheio.\n");
@@ -74,9 +79,11 @@ void inserirItem(Item mochila[], int *contador) {
     (*contador)++;
 
     printf("Item inserido com sucesso.\n");
-    pausar();
+    pausar();// Função que pede pro usuario digitar ENTER para continuar.
 }
 
+// Função que utiliza um loop for para exibir os itens na mochila,
+// antes disso ele verifica se o inventário está vazio
 void listarItens(Item mochila[], int contador) {
     if (contador == 0) {
         printf("Inventario vazio.\n");
@@ -92,6 +99,8 @@ void listarItens(Item mochila[], int contador) {
     pausar();
 }
 
+// Função que remove itens por meio de seu nome,
+// também verifica se o inventário está vazio, e se o nome digitado não existir ele invalida a tentativa.
 void removerItem(Item mochila[], int *contador) {
     if (*contador ==0) {
         printf("Inventario vazio.\n");
@@ -125,6 +134,8 @@ void removerItem(Item mochila[], int *contador) {
     pausar();
 }
 
+// Função que busca um item especifico com base no seu nome,
+// também contém medidas para validar as escolhas.
 void buscarItem(Item mochila[], int contador) {
     if (contador == 0) {
         printf("Inventario vazio.\n");
@@ -148,6 +159,7 @@ void buscarItem(Item mochila[], int contador) {
     pausar();
 }
 
+// Função que pausa o programa e pede um ENTER para prosseguir.
 void pausar() {
     printf("\nPressione ENTER para prosseguir...");
         getchar();
