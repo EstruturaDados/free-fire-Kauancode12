@@ -14,6 +14,7 @@ void inserirItem(Item mochila[], int *contador);
 void listarItens(Item mochila[], int contador);
 void removerItem(Item mochila[], int *contador);
 void buscarItem(Item mochila[], int contador);
+void pausar();
 
 int main() {
     Item mochila[TAM];
@@ -57,6 +58,7 @@ int main() {
 void inserirItem(Item mochila[], int *contador) {
     if (*contador >= TAM) {
         printf("Inventario cheio.\n");
+        pausar();
         return;
     }
 
@@ -72,23 +74,28 @@ void inserirItem(Item mochila[], int *contador) {
     (*contador)++;
 
     printf("Item inserido com sucesso.\n");
+    pausar();
 }
 
 void listarItens(Item mochila[], int contador) {
     if (contador == 0) {
         printf("Inventario vazio.\n");
+        pausar();
         return;
     }
 
-    printf("=== Itens na mochila ===\n");
+    printf("\n=== Itens na mochila ===\n");
     for (int i = 0; i < contador; i++) {
         printf("%d - Nome: %s | Tipo: %s | Quantidade: %d\n", i + 1, mochila[i].nome, mochila[i].tipo, mochila[i].quantidade);
     }
+
+    pausar();
 }
 
 void removerItem(Item mochila[], int *contador) {
     if (*contador ==0) {
         printf("Inventario vazio.\n");
+        pausar();
         return;
     }
 
@@ -105,6 +112,7 @@ void removerItem(Item mochila[], int *contador) {
     }
     if (pos == -1) {
         printf("Item nao encontrado.\n");
+        pausar();
         return;
     }
     
@@ -114,11 +122,13 @@ void removerItem(Item mochila[], int *contador) {
 
     (*contador)--;
     printf("Item removido com sucesso.\n");
+    pausar();
 }
 
 void buscarItem(Item mochila[], int contador) {
     if (contador == 0) {
         printf("Inventario vazio.\n");
+        pausar();
         return;
     }
 
@@ -129,10 +139,18 @@ void buscarItem(Item mochila[], int contador) {
     for (int i = 0; i < contador; i++) {
         if (strcmp(mochila[i].nome, nome) == 0) {
             printf("Item encontrado: Nome: %s | Tipo: %s | Quantidade: %d\n", mochila[i].nome, mochila[i].tipo, mochila[i].quantidade);
+            pausar();
             return;
         }
     }
 
     printf("Item nao encontrado.\n");
+    pausar();
+}
+
+void pausar() {
+    printf("\nPressione ENTER para prosseguir...");
+        getchar();
+        getchar();
 }
 
